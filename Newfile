@@ -1,0 +1,7 @@
+I want to clarify that I do not want to blame others, as I take full responsibility for the functionality.
+
+The reason this functionality did not fail in the non-production environment is not because we connected a mock service. In non-prod, we connected to the simulation environment, and it worked as expected. However, the failure occurred in production due to an existing file, which I did not create, containing a condition that ensures it executes only in the production environment. Upon investigation, I identified the PR that introduced this file into the main branch and noted that it was committed around three months ago.
+
+Again, as I said, I don’t want to blame others. I take responsibility because I was the one actively working on the functionality in the later stages of its development. I realize that if this file had been reviewed, removed, or updated appropriately during my work, the issue could have been avoided or resolved more easily.
+
+This experience has taught me an important lesson: when developing a functionality, it is not enough to simply add the correct code or configuration. It’s equally important to thoroughly review existing configurations or files that might impact the functionality to ensure there are no underlying issues
