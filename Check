@@ -2,3 +2,6 @@ Please find the JWT assertion attached to this email as a file.
 
 Regarding your second question about the available accounts accessible with this assertion, we will check and get back to you shortly.
 As for the accounts accessible to view the transfer limits using this token, we will review and provide clarification shortly.
+We paused the mock service to address some critical functionality tests on our end. While the mock service supports your testing, it has limited our ability to validate and troubleshoot our own functionality effectively.
+
+We’re working to complete these tests quickly and will reconnect the mock service as soon as possible. Thank you for your understand
