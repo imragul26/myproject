@@ -5,3 +5,13 @@ As for the accounts accessible to view the transfer limits using this token, we 
 We paused the mock service to address some critical functionality tests on our end. While the mock service supports your testing, it has limited our ability to validate and troubleshoot our own functionality effectively.
 
 We’re working to complete these tests quickly and will reconnect the mock service as soon as possible. Thank you for your understand
+Subject: Request for Dev Environment Access Next Week
+
+Dear [Client's Name/Team],
+
+The mock service is now reconnected and available in the dev, test, and UAT environments. However, as we continue to finalize our fixes, we will need access to the dev environment for testing next week. Could you confirm if this would work with minimal impact on your side?
+
+We appreciate your patience and understanding as we work through this process.
+
+Best regards,
+[Your Name]
