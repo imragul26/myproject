@@ -15,3 +15,6 @@ We appreciate your patience and understanding as we work through this process.
 
 Best regards,
 [Your Name]
+
+We have implemented a redelivery mechanism to handle responses that take longer than 3 minutes, cutting the connection and retrying. Although this has helped reduce the log entries, the issue is not fully resolved.
+
