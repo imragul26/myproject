@@ -18,3 +18,8 @@ Best regards,
 
 We have implemented a redelivery mechanism to handle responses that take longer than 3 minutes, cutting the connection and retrying. Although this has helped reduce the log entries, the issue is not fully resolved.
 
+Thank you for your follow-up. As requested, we have attached the timestamps of our requests (in UTC) for your reference.
+
+To provide further insight, requests and responses typically occur within seconds. However, in some cases, the responses take longer than expected. The request flow is configured with a maximum timeout of 45 seconds, retrying every 3 seconds. After 2-3 retries, we receive the response, confirming that the requests are reaching your endpoint despite initial delays.
+
+We hope this information helps with your investigation. Please let us know if any further details are required.
