@@ -23,3 +23,25 @@ Thank you for your follow-up. As requested, we have attached the timestamps of o
 To provide further insight, requests and responses typically occur within seconds. However, in some cases, the responses take longer than expected. The request flow is configured with a maximum timeout of 45 seconds, retrying every 3 seconds. After 2-3 retries, we receive the response, confirming that the requests are reaching your endpoint despite initial delays.
 
 We hope this information helps with your investigation. Please let us know if any further details are required.
+We encountered an issue where:
+
+1. AdviceWith was not replacing endpoints (e.g., S3) in the test cases.
+
+
+2. The direct route created by the code generator (rest().to("direct:route1")) was not being hit when invoked using the ProducerTemplate.
+
+
+
+Fix:
+We introduced an intermediary route:
+
+rest().to("direct:route1")
+
+from("direct:route1").to("direct:route2")
+
+from("direct:route2").to("aws2-s3:bucket-name")
+
+
+After this change, both AdviceWith replacement and ProducerTemplate invocation started working correctly.
+
+This doesn’t seem like the correct fix long-term, but does this help you identify what the root cause might be or remind you of anything related? Let me know your thoughts!
