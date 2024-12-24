@@ -1,4 +1,4 @@
-Please find the JWT assertion attached to this email as a file.
+okPlease find the JWT assertion attached to this email as a file.
 
 Regarding your second question about the available accounts accessible with this assertion, we will check and get back to you shortly.
 As for the accounts accessible to view the transfer limits using this token, we will review and provide clarification shortly.
@@ -56,3 +56,21 @@ This should allow us to see specifically which requests are sent to that IP and 
 After this change, both AdviceWith replacement and ProducerTemplate invocation started working correctly.
 
 This doesn’t seem like the correct fix long-term, but does this help you identify what the root cause might be or remind you of anything related? Let me know your thoughts!
+Subject: Request for Network Debugging Assistance
+
+Dear [Team],
+
+I am creating this ticket to request your assistance with the issue detailed below. Please refer to the email chain attached for the complete context.
+
+Summary of Request:
+
+1. Confirm the IP address that live.tytyuutr.net resolves to from our server.
+
+
+2. Perform a Wireshark capture on the relevant machine to log the exact network traffic to that IP.
+
+
+
+This information will help the external team debug further and compare our logs with theirs.
+
+Please let me know if additional details are required
