@@ -41,6 +41,17 @@ from("direct:route1").to("direct:route2")
 
 from("direct:route2").to("aws2-s3:bucket-name")
 
+Our network team has extracted logs from the specific edge node we can see you hit on your successful requests, and none of the “Request” timestamps provided below except the timely one, are present. So these requests never reach Akamai and thus never reach us.
+ 
+No request that does reach us takes more than ~300ms to process on our side, and we have matching requests for those timestamps you provide as “Response”, which presumably is your retry that eventually works.
+ 
+In order to debug further, could you please:
+ 
+Confirm which IP address you see when resolving live.tytyuutr.net
+Run a wireshark capture on the machine to log the exact network traffic against that IP.
+ 
+This should allow us to see specifically which requests are sent to that IP and compare with the logs on our side. 
+
 
 After this change, both AdviceWith replacement and ProducerTemplate invocation started working correctly.
 
