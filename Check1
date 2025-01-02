@@ -1,0 +1,85 @@
+Here’s the updated version with the additional details included:
+
+
+---
+
+Proposal: Retry Mechanism for Handling Failures in Cash Transfer Service
+
+1. Current Process:
+
+The cash transfer service provides endpoints and asynchronous internal processes.
+
+When a transfer is initiated through an endpoint:
+
+The request is saved in the database.
+
+An internal asynchronous process is triggered to interact with external systems (e.g., APIs or AMQ).
+
+The response is immediately sent back, indicating that the transfer has been initiated.
+
+
+
+
+2. Identified Issues:
+
+If an internal process fails (e.g., due to a connection issue with external systems or failed message delivery to AMQ), the operation remains incomplete.
+
+Additionally, there are scenarios where the transfer is marked as failed not due to a connection issue, but because of an expected response (e.g., rejected data in the body).
+
+
+
+3. Proposed Solution:
+
+Failure Handling:
+
+Upon failure (whether due to connection issues or expected rejections), update the record to mark the transfer as failed.
+
+Introduce a new database column (e.g., retry_flag) with a default value of N (No). Set this column to Y (Yes) only for records that require reprocessing (i.e., those that failed due to transient issues).
+
+
+Retry Mechanism:
+
+Implement a timer-based process that runs every 15 minutes to identify and pick up records with retry_flag = Y.
+
+Once a record is picked for processing, set retry_flag back to N to prevent duplicate processing.
+
+
+Reprocessing Logic:
+
+Reattempt processing for the selected record.
+
+If reprocessing is successful, no further action is required.
+
+If it fails again, update the record to set retry_flag back to Y for the next retry cycle.
+
+
+
+
+4. Advantages of Introducing the New Column:
+
+Efficiency: Adding the retry_flag column helps narrow down the records that need to be picked up by the retry mechanism, reducing the scope of the timer job. Without this column, the timer would need to check all failed records, including those that failed due to expected rejections (which don’t require retrying).
+
+Targeted Processing: By differentiating failure types (connection issues vs. expected rejections), we can focus the retry process only on records that require a reattempt.
+
+Prevents Unnecessary Reprocessing: The new column ensures that records which have failed due to expected rejections (not transient issues) are not unnecessarily retried, improving system performance.
+
+
+
+5. Expected Benefits:
+
+Ensures failed operations are retried without manual intervention.
+
+Prevents duplicate processing during the retry phase.
+
+Offers a systematic approach to recover from transient failures.
+
+Optimizes timer job performance by filtering out non-relevant failed records.
+
+
+
+
+
+---
+
+This version includes your point about reducing the timer job load and addresses the scenario with expected failures. Let me know if anything else needs adjusting!
+
