@@ -82,4 +82,5 @@ Optimizes timer job performance by filtering out non-relevant failed records.
 ---
 
 This version includes your point about reducing the timer job load and addresses the scenario with expected failures. Let me know if anything else needs adjusting!
+Avro does not validate the string length, which is a known limitation. To better understand the issue, could you clarify whether the larger data or long value is a recent occurrence or if it has been present for a longer period? This will help us assess the situation more effectively.
 
