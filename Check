@@ -51,3 +51,4 @@ If it fails again, set retry_flag to Y for another retry after 15 minutes.
 ---
 
 Let me know if this captures your idea or if any adjustments are needed.
+The source and destination for the endpoint are as follows: [include details here]. Initially, the default timeout for the response was set to 3 minutes. However, keeping the connection open for that long is not optimal. To address this, we reduced the timeout to 45 seconds. If a response is not received within this time frame, our application will throw a SocketException."
