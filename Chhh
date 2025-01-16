@@ -1,0 +1,111 @@
+1. Create Your Spring Boot Project
+
+You can use Spring Initializr to create a base project:
+
+1. Visit Spring Initializr.
+
+
+2. Select the following options:
+
+Project: Maven Project
+
+Language: Java
+
+Spring Boot: 2.x or later (compatible with Java 21)
+
+Dependencies: Spring Web, Apache CXF Spring Boot Starter
+
+
+
+3. Click Generate to download the project.
+
+
+
+
+---
+
+2. Add the Apache CXF Codegen Plugin to pom.xml
+
+Once you’ve generated and opened your project, add the cxf-codegen-plugin to the pom.xml:
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-codegen-plugin</artifactId>
+            <version>4.0.0</version> <!-- Ensure compatibility with your version -->
+            <executions>
+                <execution>
+                    <id>generate-sources</id>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>wsdl2java</goal>
+                    </goals>
+                    <configuration>
+                        <wsdlOptions>
+                            <wsdlOption>
+                                <wsdl>path/to/your-service.wsdl</wsdl> <!-- Update with your WSDL -->
+                                <extraargs>
+                                    <extraarg>-autoNameResolution</extraarg>
+                                </extraargs>
+                            </wsdlOption>
+                        </wsdlOptions>
+                        <packageName>com.example.soap.client</packageName>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+
+---
+
+3. Create SOAP Client Code
+
+CxfClientConfig.java: Define the Spring Bean for the SOAP client.
+
+
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class CxfClientConfig {
+
+    @Bean
+    public MyService myService() {
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setServiceClass(MyService.class); // Your generated interface
+        factory.setAddress("http://your-soap-service-endpoint"); // SOAP endpoint
+        return (MyService) factory.create();
+    }
+}
+
+SoapClientService.java: Use the client to call the SOAP service.
+
+
+import com.example.soap.client.MyService; // Generated class
+import com.example.soap.client.MyRequest; // Generated request
+import com.example.soap.client.MyResponse; // Generated response
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class SoapClientService {
+
+    @Autowired
+    private MyService myService;
+
+    public void callSoapService() {
+        MyRequest request = new MyRequest();
+        request.setField("value"); // Set required fields
+
+        MyResponse response = myService.myOperation(request); // Call SOAP method
+
+        System.out.println("Response: " + response.getField());
+    }
+}
+
+
+---
