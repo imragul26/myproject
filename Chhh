@@ -114,3 +114,6 @@ I’ve implemented the SOAP service consumption using Apache CXF with the CXF-Sp
 Added the CXF dependency to the pom.xml.
 
 Configured the SOAP client using JaxWsProxyFactoryBean in a Spring @Configuration class.
+The SOAP service implementation for [X endpoint] has been completed, and we’ve successfully connected and received responses. As we don’t yet have the complete mappings, further code modifications will be needed once they are finalized.
+
+Note: After consulting with Pollard (mentor), Smith and I decided not to use Apache Camel for this implementation. Instead, we developed it using a raw Spring Boot approach for simplicity and alignment with project requirements.
