@@ -109,3 +109,8 @@ public class SoapClientService {
 
 
 ---
+I’ve implemented the SOAP service consumption using Apache CXF with the CXF-Spring-Boot-Starter-JAXWS dependency. Here's what I’ve done:
+
+Added the CXF dependency to the pom.xml.
+
+Configured the SOAP client using JaxWsProxyFactoryBean in a Spring @Configuration class.
