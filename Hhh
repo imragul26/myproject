@@ -1,0 +1,17 @@
+We’re trying to consume the X system’s web service. Initially, we tested it using SoapUI, and it worked successfully. We then implemented it in our application and added the destination rule for TLS. However, when accessing the service from the pod, we’re getting a 503 Service Unavailable error.
+
+Interestingly, the same URL works fine in SoapUI, and our service is also functional when tested with the SoapUI mock server. I’ve attached the logs from both our service and SoapUI for reference. Could you take a look and let me know if you have any ideas about what might be causing the issue?
+
+Previously, when we integrated with the Y CMS service (also a SOAP service), we had to use an Envoy filter for mTLS since the destination rule didn’t work. Although X and Y are different services, could this be a similar scenario where an Envoy filter might be needed?"
+
+2. 
+
+"I remember that for the Y CMS service, which is also a SOAP service, we used an Envoy filter for mTLS as the destination rule didn’t work in that case. Do you think it’s worth exploring a similar approach for this service?"
+
+3. 
+
+"In the past, when working with the Y CMS SOAP service, we couldn’t get the destination rule to work for mTLS and ended up using an Envoy filter. Do you think we might need to consider the same solution here?"
+
+4. 
+
+"When we connected to the Y CMS SOAP service earlier, we had to use an Envoy filter for mTLS because the destination rule didn’t work. Could this issue with X also require a similar solution?"
