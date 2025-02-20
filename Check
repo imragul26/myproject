@@ -4,3 +4,8 @@ You could add a little more context if you want:
 
 "I’ve added the Jira Cloud app in Teams, and it looks cool! It’s super helpful for finding and managing Jira tickets directly from Teams."
 
+Hi Team,
+
+We are facing issues accessing Kafka UI, Kiali, and our REST API endpoints. We've tried using Postman and cURL, but requests are timing out. When performing an nslookup, we see "request to unknown timed out." However, when using kubectl, we can see that the application pods, including Apicurio and Kiali, are running.
+
+It seems to be a DNS-related issue, preventing both the UIs and APIs from being accessible.
