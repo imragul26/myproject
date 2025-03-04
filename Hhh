@@ -15,3 +15,17 @@ Previously, when we integrated with the Y CMS service (also a SOAP service), we 
 4. 
 
 "When we connected to the Y CMS SOAP service earlier, we had to use an Envoy filter for mTLS because the destination rule didn’t work. Could this issue with X also require a similar solution?"
+Following our previous discussions, we have a few questions regarding the getOrders endpoint from the trad WSDL and would appreciate your clarification.
+
+In the WSDL, both the typeid and accountnumber fields are defined with minOccurs="0" and nillable="true", suggesting they are optional. However, we have observed the following behavior:
+
+Although typeid and accountnumber are marked as optional in the WSDL, omitting either field results in the following error:
+"Unable to authenticate account number against the user credentials."
+
+
+We would like to clarify the following:
+
+1. Are these fields (typeid and accountnumber) required due to specific processing rules or conditions to retrieve orders, despite being marked as optional in the WSDL?
+
+
+2. Based on the error message, is there any user who can retrieve orders without providing both accountnumber and typeid, even though they are marked as optional in the WSDL?
