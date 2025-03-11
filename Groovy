@@ -1,0 +1,25 @@
+// Get the incoming SOAP request
+def request = mockRequest.requestContent
+
+// Define the namespace (optional: only if namespace exists in your user tag)
+def namespace = "ns:" // Update with your actual namespace if needed, or leave it empty if none
+
+// Count the number of <user> elements, considering namespace if present
+def userCount = request.count("<${namespace}user>")
+
+log.info("User count: ${userCount}")
+
+// Return different responses based on the user count
+if (userCount == 2) {
+    mockResponse.responseContent = '''<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <Response>Two Users Found</Response>
+   </soapenv:Body>
+</soapenv:Envelope>'''
+} else {
+    mockResponse.responseContent = '''<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <Response>One User Found</Response>
+   </soapenv:Body>
+</soapenv:Envelope>'''
+}
