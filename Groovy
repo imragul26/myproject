@@ -23,3 +23,6 @@ if (userCount == 2) {
    </soapenv:Body>
 </soapenv:Envelope>'''
 }
+In the CreateCounterpart request, there is a users field which is a list. Within this list, we have the user object. If there are multiple users in the request, the response should also include multiple user objects accordingly.
+
+I am sharing the sample request and response for both a single user and multiple users to clarify the expected output.
